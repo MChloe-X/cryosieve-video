@@ -1,7 +1,7 @@
-¡¾cmj£ºÕâÊÇÎÒĞ´Íê²¢ĞŞ¸ÄÍêµÄÊÓÆµ½Å±¾£¬¼Æ»®Ã¿Ò»¸öEPËãÒ»¼¯£¬¼´ÓĞÒ»¸ö×ª³¡»ò»»¼¯£¬¶øÃ¿¸ö¶ş¼¶±êÌâÔòÊÇÓÃÓÚ·½±ãÂ¼ÖÆ¼ÇÂ¼µÄ¡¿
+ã€cmjï¼šè¿™æ˜¯æˆ‘å†™å®Œå¹¶ä¿®æ”¹å®Œçš„è§†é¢‘è„šæœ¬ï¼Œè®¡åˆ’æ¯ä¸€ä¸ªEPç®—ä¸€é›†ï¼Œå³æœ‰ä¸€ä¸ªè½¬åœºæˆ–æ¢é›†ï¼Œè€Œæ¯ä¸ªäºŒçº§æ ‡é¢˜åˆ™æ˜¯ç”¨äºæ–¹ä¾¿å½•åˆ¶è®°å½•çš„ã€‘
 ## EP1 Introduction
 ### Intro
-¡¾ÕâĞ©½éÉÜ²¿·ÖÃ»ÓĞ²Ù×÷ÊÇ¿Õ¾µÍ·£¬ÒªÂ¼ÊÓÆµµÄ»°£¬´ó¼ÒÓĞÃ»ÓĞºÃµÄ½¨ÒéÑ½£¿¡¿
+ã€è¿™äº›ä»‹ç»éƒ¨åˆ†æ²¡æœ‰æ“ä½œæ˜¯ç©ºé•œå¤´ï¼Œè¦å½•è§†é¢‘çš„è¯ï¼Œå¤§å®¶æœ‰æ²¡æœ‰å¥½çš„å»ºè®®å‘€ï¼Ÿã€‘
 Cryo-electron microscopy (cryo-EM) is widely used to determine near atomic resolution structures of biological macromolecules. Due to the extremely low signal-to-noise ratio, cryo-EM relies on averaging many images.
 ### Problem
 However, a crucial question remains unanswered: how close can we get to the minimum number of particles required to reach a specific resolution in practice, which has impeded progress in understanding sample behavior and the performance of sample preparation methods.
@@ -10,7 +10,7 @@ CryoSieve, a new iterative particle sorting and/or sieving method, was developed
 
 Extensive experiments demonstrate that CryoSieve outperforms other cryo-EM particle sorting algorithms, showing that most particles are unnecessary in final stacks. The minority of particles remaining in the final stacks yield superior high-resolution amplitude in reconstructed density maps, sometimes even approaching the theoretical limit.
 
-¡¾CryoSieveÊÇÒ»¸ö¶Ôfinal stackÖĞµÄ¿ÅÁ£½øĞĞÅÅĞò¡¢É¸Ñ¡µÄËã·¨£¬¿ÉÒÔÔÚ±£³Ö·Ö±æÂÊµÄÌõ¼şÏÂÉ¸µôÒ»´ó°ëµÄ¿ÅÁ£¡£¡¿[ÊÇ¶ÔËùÓĞµÄfinal stack¶¼¿ÉÒÔ×öµ½Âğ]
+ã€CryoSieveæ˜¯ä¸€ä¸ªå¯¹final stackä¸­çš„é¢—ç²’è¿›è¡Œæ’åºã€ç­›é€‰çš„ç®—æ³•ï¼Œå¯ä»¥åœ¨ä¿æŒåˆ†è¾¨ç‡çš„æ¡ä»¶ä¸‹ç­›æ‰ä¸€å¤§åŠçš„é¢—ç²’ã€‚ã€‘[æ˜¯å¯¹æ‰€æœ‰çš„final stackéƒ½å¯ä»¥åšåˆ°å—]
 ### Principle && Function
 To achieve this, CryoSieve employs an iterative approach, alternating between two key steps: 3D reconstruction and particle selection. In each iteration, the algorithm systematically evaluates the particles and eliminates those that are deemed futile, then a cryo-EM single-paritcle reconstruction software selected by the user will be used to reconstruct a new density map with the retained particle images, which is then used in the subsequent iteration. 
 To determine which particles should be kept and which should be screened, we developed a CryoSieve score. The CryoSieve score estimates the similarity between a particle and a reference projection above a given frequency. A higher CryoSieve score indicates that the particle and the reference projection share a higher proportion of signal energy, indicating better particle quality.
@@ -18,10 +18,10 @@ To determine which particles should be kept and which should be screened, we dev
 1. In conclusion, CryoSieve is a powerful software that has the potential to establish a metric for the quantitative evaluation of various sample preparation techniques. By providing a robust framework, CryoSieve empowers researchers to optimize sample preparation methods and drive advancements in cryo-EM.
 2. In conclusion, CryoSieve is a powerful software that offers a range of potential applications in cryo-electron microscopy. (improve resolution, enhance amplitude; pick only best particles for subsequent compution-heavy process like symmetry-expension; quantitively jedge variables in sample preparation)
 
-¡¾cmj£ºÕâÒ»¶ÎÁôÏÂ1ºÍ2ÆäÖĞÒ»¸ö£¬2ÖĞĞèÒª°ÑpptÉÏµÄÈıµãÏÎ½ÓÆğÀ´¡¿
+ã€cmjï¼šè¿™ä¸€æ®µç•™ä¸‹1å’Œ2å…¶ä¸­ä¸€ä¸ªï¼Œ2ä¸­éœ€è¦æŠŠpptä¸Šçš„ä¸‰ç‚¹è¡”æ¥èµ·æ¥ã€‘
 ## EP2 Start CryoSieve
 ### Guide
-If you are highly interested in our software and would like to start using it yourself, please continue reading as I will guide you through the installation and usage of CryoSieve. *Õ¹Ê¾ËùĞèÌõ¼ş½ØÍ¼£¬²»×öÏêÏ¸ËµÃ÷*
+If you are highly interested in our software and would like to start using it yourself, please continue reading as I will guide you through the installation and usage of CryoSieve. *å±•ç¤ºæ‰€éœ€æ¡ä»¶æˆªå›¾ï¼Œä¸åšè¯¦ç»†è¯´æ˜*
 
 At the very beginning, your computer needs to meet these prerequisites:
 + Python version 3.7 or later.
@@ -40,7 +40,7 @@ If you have met the above conditions, let's do some preparatory work for the suc
 First of all, preparation of CUDA Environment. 
 + If you have already installed the appropriate CUDA, along with the corresponding PyTorch and CuPy packages in your environment, you may disregard this step.
 + As an example, we utilize this approach to create a new environment that fulfills the dependency requirements of CryoSieve. 
-*ÇÃ´´½¨»·¾³´úÂë*
+*æ•²åˆ›å»ºç¯å¢ƒä»£ç *
 `conda create -n CRYOSIEVE_ENV python=3.10 cupy=10.2 cudatoolkit=10.2 pytorch=1.12.1=py3.10_cuda10.2_cudnn7.6.5_0 -c conda-forge -c pytorch`
 And then activate it.
 `source activate CRYOSIEVE_ENV`
@@ -48,63 +48,64 @@ And then activate it.
 Please note that this command is specifically for a CUDA environment version 10.2. If your CUDA env is higher than 10.2, adjust the command based on the suitable variants and versions recommended by the CuPy and PyTorch developers for your specific CUDA environment.
 ### Install CryoSieve
 Next, we install CryoSieve by enter this command:
-*ÊÓÆµÖĞÇÃÈë´Ë´úÂë* `pip install cryosieve`
+*è§†é¢‘ä¸­æ•²å…¥æ­¤ä»£ç * `pip install cryosieve`
 
 you can use either via pip or conda. If you prefer to use conda, type in this command:
-*¿ÉÒÔÀûÓÃ¶¯»­ÔÚÓÒÉÏ½Ç¸¡³ö´Ë´úÂë* `conda install -c mxhulab cryosieve`
+*å¯ä»¥åˆ©ç”¨åŠ¨ç”»åœ¨å³ä¸Šè§’æµ®å‡ºæ­¤ä»£ç * `conda install -c mxhulab cryosieve`
 ### Verify
 You can verify whether CryoSieve has been installed successfully by running this command:`cryosieve -h`
 
 a successful installation should display the help information for CryoSieve.
-*ÇÃ»÷ÃüÁîcryosieve -h*
+*æ•²å‡»å‘½ä»¤cryosieve -h*
 ## EP3 Toy Example
 So far, our preparation is complete.
 
 To validate your successful installation of CryoSieve and familiarize yourself with its functionalities, we prepare a toy example to test the core particle sieving module--cryosieve-core. This step is not mandatory, you have the option to skip it and proceed directly to the practical application tutorial.
 ### Dataset Preparation
 First, find the toy example on our github, download the dataset and place it into any directory of your choice. Here I put the dataset in a directory named toy.
-*lsÕ¹Ê¾ÎÄ¼ş¼Ğ*
+*lså±•ç¤ºæ–‡ä»¶å¤¹*
 
 Then, we navigate to this directory
-*ÊäÈë cd ~/toy/*
+*è¾“å…¥ cd ~/toy/*
 
 and initiate CryoSieve with the following command:
-*ÊäÈë `cryosieve-core --i CNG.star --o my_CNG_1.star --angpix 1.32 --volume CNG_A.mrc --volume CNG_B.mrc --mask CNG_mask.mrc --retention_ratio 0.8 --frequency 40`*
+*è¾“å…¥ `cryosieve-core --i CNG.star --o my_CNG_1.star --angpix 1.32 --volume CNG_A.mrc --volume CNG_B.mrc --mask CNG_mask.mrc --retention_ratio 0.8 --frequency 40`*
 
 The parameter "i" represents the input star file path, while "o" represents the output star file path. The "angpix" parameter corresponds to the pixel size in Angstrom, which we typically set to 1.32. The "volume" parameter denotes the list of volume file paths, also known as density maps. Additionally, the "mask" parameter refers to the file path of the mask used in the process.
 
 One of the most crucial parameters is "retention_ratio," which represents the fraction of particles retained during the analysis. By default, it is set to 0.8, but can be adjusted as needed. Another important parameter is "frequency," which allows setting the cut-off highpass frequency.
 
-I'd like to mention the `--num_gpus` parameter as well. When used with a value larger than 1, CryoSieve's core program utilizes multiple GPUs to accelerate the sieving process. Each of the processes will use exactly one GPU.For instance, on a machine equipped with 4 GPUs, you can include: *Ä©Î²¼ÓÉÏ` --num_gpus 4`* at the end of the command.
-¡¾cmj£ºÕâÀïµÄnum_gpusÎÒÑ¡ÔñÁË±£Áô½éÉÜ£¬ÒòÎªÔÚÃüÁîĞĞÖĞÃ»ÓĞ³öÏÖÕâ¸ö²ÎÊı£¬Êµ¼ÊÓ¦ÓÃÖĞ¿ÉÄÜ»á±»ºöÂÔ¡¿
-Here we use only one gpu is enough.*É¾³ı` --num_gpus 4`* 
+I'd like to mention the `--num_gpus` parameter as well. When used with a value larger than 1, CryoSieve's core program utilizes multiple GPUs to accelerate the sieving process. Each of the processes will use exactly one GPU.For instance, on a machine equipped with 4 GPUs, you can include: *æœ«å°¾åŠ ä¸Š` --num_gpus 4`* at the end of the command.
+ã€cmjï¼šè¿™é‡Œçš„num_gpusæˆ‘é€‰æ‹©äº†ä¿ç•™ä»‹ç»ï¼Œå› ä¸ºåœ¨å‘½ä»¤è¡Œä¸­æ²¡æœ‰å‡ºç°è¿™ä¸ªå‚æ•°ï¼Œå®é™…åº”ç”¨ä¸­å¯èƒ½ä¼šè¢«å¿½ç•¥ã€‘
+Here we use only one gpu is enough.*åˆ é™¤` --num_gpus 4`* 
 
-Upon successful execution, the command will generate two star files;*`cd ~/toy/²¢ls`Õ¹Ê¾`my_CNG_1.star` `my_CNG_1_sieved.star`Ö¸ÏòµÚÒ»¸öÎÄ¼ş£º*This file contain the information of the remaining particles, *Ö¸ÏòµÚ¶ş¸öÎÄ¼ş*and this one contains the sieved particles.
+Upon successful execution, the command will generate two star files;*`cd ~/toy/å¹¶ls`å±•ç¤º`my_CNG_1.star` `my_CNG_1_sieved.star`æŒ‡å‘ç¬¬ä¸€ä¸ªæ–‡ä»¶ï¼š*This file contain the information of the remaining particles, *æŒ‡å‘ç¬¬äºŒä¸ªæ–‡ä»¶*and this one contains the sieved particles.
 
 If executed correctly, they should contain the same particles.
 You can use this command to see if two file contain the same particle information.
-*ÇÃÈë `diff my_CNG_1.star my_CNG_1_sieved.star`*
+*æ•²å…¥ `diff my_CNG_1.star my_CNG_1_sieved.star`*
 ## EP4 Practical Utility
+
 ### Dataset Preparation
-In this section, we provide a hands-on example of how to utilize CryoSieve for processing the final stack in a real-world experimental dataset. For this tutorial, we'll use the final particle stack from the `EMPIAR-11233` dataset. 
+In this section, we provide a hands-on example of how to utilize CryoSieve for processing the final stack in a real-world experimental dataset. For this tutorial, we'll use the final particle stack from the `EMPIAR-11233` dataset. [I RECOMMEND TO USE EMPIAR-10097 DATASET. IT IS USED IN MY KEYNOTE.]
 
 To download the final particle stack, navigate to your desired working directory and execute the following command:
 `wget -nH -m ftp://ftp.ebi.ac.uk/empiar/world_availability/11233/data/Final_Particle_Stack/`
 
 Go to the folder where the data set is stored, this directory contains a star file with all particle information and an mrcs file representing the final stack.
 *cd+ls*
-Additionally, you'll need a mask file. You can generate a mask file using any cryo-EM software, based on the reconstructed volume. If you prefer not to generate a mask file, we've provided one used in our experiments which you can download from our github. Once you have the mask file, move it into the `Final_Particle_Stack` directory.¡¾ÕâÒ»¶ÎÓĞ±ØÒªÂğ£¿¡¿
+Additionally, you'll need a mask file. You can generate a mask file using any cryo-EM software, based on the reconstructed volume. If you prefer not to generate a mask file, we've provided one used in our experiments which you can download from our github. Once you have the mask file, move it into the `Final_Particle_Stack` directory.ã€è¿™ä¸€æ®µæœ‰å¿…è¦å—ï¼Ÿã€‘
 
-*½ö½øĞĞÌáÊ¾£¬ÎŞĞè²Ù×÷*
+*ä»…è¿›è¡Œæç¤ºï¼Œæ— éœ€æ“ä½œ*
 
-¡¾×÷ÎªÒ»¸ötutorial£¬¿ÉÒÔ´ÓÏÂÔØEMPIAR¿ªÊ¼½²Æğ£¬µ±È»ÓÃ»§Êµ¼ÊÊ¹ÓÃµÄÊ±ºò²»»á×öÕâ¸ö²Ù×÷µÄ£¬ÒòÎªËûÃÇ¶¼ÊÇ´¦Àí×Ô¼ºµÄÊı¾İ¡£¡¿¡¾cmj£º²»ÊÇËµÄ¬ÈÏËùÓĞÈË¶¼´ÓEMPIARÏÂÔØÊı¾İÂï£¿ÎÒµ¥¶ÀÆÁÄ»ÉÏÕ¹Ê¾Ò»ÏÂÏÂÔØÃüÁîÒ²ÊÇ¿ÉÒÔµÄ°É£¿¡¿
+ã€ä½œä¸ºä¸€ä¸ªtutorialï¼Œå¯ä»¥ä»ä¸‹è½½EMPIARå¼€å§‹è®²èµ·ï¼Œå½“ç„¶ç”¨æˆ·å®é™…ä½¿ç”¨çš„æ—¶å€™ä¸ä¼šåšè¿™ä¸ªæ“ä½œçš„ï¼Œå› ä¸ºä»–ä»¬éƒ½æ˜¯å¤„ç†è‡ªå·±çš„æ•°æ®ã€‚ã€‘ã€cmjï¼šä¸æ˜¯è¯´é»˜è®¤æ‰€æœ‰äººéƒ½ä»EMPIARä¸‹è½½æ•°æ®å˜›ï¼Ÿæˆ‘å•ç‹¬å±å¹•ä¸Šå±•ç¤ºä¸€ä¸‹ä¸‹è½½å‘½ä»¤ä¹Ÿæ˜¯å¯ä»¥çš„å§ï¼Ÿã€‘
 
 ### Iterative Reconstruction and Sieving
 
 To achieve optimal results with real-world datasets, the sieving process generally involves several iterations. For your convenience, we have developed a single-run command, 'cryosieve', which automates all these steps.
 
 Before using it, activate your CUDA environment using the following command:
-*ÊäÈëÃüÁî`source activate xxx`*
+*è¾“å…¥å‘½ä»¤`source activate xxx`*
 Please modify the environment name according to your specific configuration.
 
 ### start
@@ -112,7 +113,7 @@ To start our program, follow these steps:
 Firstly, navigate to `XXX/data/Final_Particle_Stack`. I have already in this directory.
 Then, make sure that  `relion_reconstruct` or `relion_reconstruct_mpi` and `relion_postprocess` are accessible since our automatic program currently uses Relion for 3D reconstruction and postprocessing. 
 Once confirmed, run the following command:
-*ÊäÈëÃüÁî`cryosieve --reconstruct_software relion_reconstruct --postprocess_software relion_postprocess --i diver2019_pmTRPM8_calcium_Krios_6Feb18_finalParticleStack_EMPIAR_composite.star --o output/ --mask mask.mrc --angpix 1.059 --num_iters 10 --frequency_start 40 --frequency_end 3 --retention_ratio 0.8 --sym C4`*
+*è¾“å…¥å‘½ä»¤`cryosieve --reconstruct_software relion_reconstruct --postprocess_software relion_postprocess --i diver2019_pmTRPM8_calcium_Krios_6Feb18_finalParticleStack_EMPIAR_composite.star --o output/ --mask mask.mrc --angpix 1.059 --num_iters 10 --frequency_start 40 --frequency_end 3 --retention_ratio 0.8 --sym C4`*
 The parameters "reconstruction_software" and "postprocess_software" specify the reconstruction and post-processing software. 
 "i," "o," "mask," "angpix," and "retention_ratio" are used in the same way as the parameters in the CryoSieve-Core command. They are used to specify the input and output file paths, mask file path, pixel size in Angstrom, and fraction of retained particles in each iteration (default value: 0.8). 
 "frequency_start" and "frequency_end" set the starting and ending threshold frequencies in Angstrom units. The default values are 50A and 3A, respectively. 
@@ -128,7 +129,11 @@ The entire process may take over an hour, depending on your system resources. Mu
 `_iter{n}_sieve.txt`
 `_iter{n}.star`
 
-¡¾ÉÏÊöÎÄ¼ş·Ö±ğÊÇ£ºµÚnÂÖÖØ¹¹µÄÃÜ¶ÈÍ¼1¡¢ÃÜ¶ÈÍ¼2¡¢ÈÕÖ¾1¡¢ÈÕÖ¾2£¬É¸Ñ¡µôµÄ¿ÅÁ£¡¢É¸Ñ¡µÄÈÕÖ¾¡¢±£ÁôµÄ¿ÅÁ£¡£µ«ÊÇÕâĞ©ÎÄ¼şÓ¦¸Ã»¹²»È«£¬ÔÚÊ¹ÓÃpostprocessµÄÊ±ºò»¹ÓĞpostprocess²úÉúµÄÎÄ¼ş¡£¡¿
+ã€ä¸Šè¿°æ–‡ä»¶åˆ†åˆ«æ˜¯ï¼šç¬¬nè½®é‡æ„çš„å¯†åº¦å›¾1ã€å¯†åº¦å›¾2ã€æ—¥å¿—1ã€æ—¥å¿—2ï¼Œç­›é€‰æ‰çš„é¢—ç²’ã€ç­›é€‰çš„æ—¥å¿—ã€ä¿ç•™çš„é¢—ç²’ã€‚ä½†æ˜¯è¿™äº›æ–‡ä»¶åº”è¯¥è¿˜ä¸å…¨ï¼Œåœ¨ä½¿ç”¨postprocessçš„æ—¶å€™è¿˜æœ‰postprocessäº§ç”Ÿçš„æ–‡ä»¶ã€‚ã€‘
+
+## EP6, re-esimate poses via CryoSPARC
+
+VERY IMPORTANT, PLEASE TRY TO DO IT YOURSELF, BASED ON MY KEYNOTE.
 
 ## Ending
 
@@ -136,4 +141,4 @@ In this video, we introduced the CryoSieve algorithm and show you how to apply t
 
 That concludes the complete introduction and tutorial on CryoSieve. If you would like to learn more about CryoSieve, we recommend visiting our GitHub page and referring to our research paper. Thank you for your support.
 
-¡¾Good job!¡¿
+ã€Good job!ã€‘
