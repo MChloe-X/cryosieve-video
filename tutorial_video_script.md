@@ -4,21 +4,19 @@
 【这些介绍部分没有操作是空镜头，要录视频的话，大家有没有好的建议呀？】
 Cryo-electron microscopy (cryo-EM) is widely used to determine near atomic resolution structures of biological macromolecules. Due to the extremely low signal-to-noise ratio, cryo-EM relies on averaging many images.
 ### Problem
-However, a crucial question remains unanswered: how close can we get to the minimum number of particles required to reach a specific resolution in practice, which has impeded progress in understanding sample behavior and the performance of sample preparation methods.
+However, a crucial question remains unanswered: how close can we get to the minimum number of particles required to reach a specific resolution in practice.
+
 ### CryoSieve
-CryoSieve, a new iterative particle sorting and/or sieving method, was developed to solve this problem.
+CryoSieve, a new iterative particle sorting method, was developed to solve this problem.
 
 Extensive experiments demonstrate that CryoSieve outperforms other cryo-EM particle sorting algorithms, showing that most particles are unnecessary in final stacks. The minority of particles remaining in the final stacks yield superior high-resolution amplitude in reconstructed density maps, sometimes even approaching the theoretical limit.
 
-【CryoSieve是一个对final stack中的颗粒进行排序、筛选的算法，可以在保持分辨率的条件下筛掉一大半的颗粒。】[是对所有的final stack都可以做到吗]
 ### Principle && Function
 To achieve this, CryoSieve employs an iterative approach, alternating between two key steps: 3D reconstruction and particle selection. In each iteration, the algorithm systematically evaluates the particles and eliminates those that are deemed futile, then a cryo-EM single-paritcle reconstruction software selected by the user will be used to reconstruct a new density map with the retained particle images, which is then used in the subsequent iteration. 
 To determine which particles should be kept and which should be screened, we developed a CryoSieve score. The CryoSieve score estimates the similarity between a particle and a reference projection above a given frequency. A higher CryoSieve score indicates that the particle and the reference projection share a higher proportion of signal energy, indicating better particle quality.
 
-1. In conclusion, CryoSieve is a powerful software that has the potential to establish a metric for the quantitative evaluation of various sample preparation techniques. By providing a robust framework, CryoSieve empowers researchers to optimize sample preparation methods and drive advancements in cryo-EM.
-2. In conclusion, CryoSieve is a powerful software that offers a range of potential applications in cryo-electron microscopy. (improve resolution, enhance amplitude; pick only best particles for subsequent compution-heavy process like symmetry-expension; quantitively jedge variables in sample preparation)
+In conclusion, CryoSieve is a powerful software that offers a range of potential applications in cryo-electron microscopy. It can improve resolution and enhance amplitude in reconstructed density maps. It allows for the selection of only the best particles for computationally intensive processes such as symmetry expansion. Additionally, CryoSieve can quantitatively assess variables in sample preparation, providing valuable insights for optimizing experimental conditions. 
 
-【cmj：这一段留下1和2其中一个，2中需要把ppt上的三点衔接起来】
 ## EP2 Start CryoSieve
 ### Guide
 If you are highly interested in our software and would like to start using it yourself, please continue reading as I will guide you through the installation and usage of CryoSieve. *展示所需条件截图，不做详细说明*
@@ -76,7 +74,6 @@ The parameter "i" represents the input star file path, while "o" represents the 
 One of the most crucial parameters is "retention_ratio," which represents the fraction of particles retained during the analysis. By default, it is set to 0.8, but can be adjusted as needed. Another important parameter is "frequency," which allows setting the cut-off highpass frequency.
 
 I'd like to mention the `--num_gpus` parameter as well. When used with a value larger than 1, CryoSieve's core program utilizes multiple GPUs to accelerate the sieving process. Each of the processes will use exactly one GPU.For instance, on a machine equipped with 4 GPUs, you can include: *末尾加上` --num_gpus 4`* at the end of the command.
-【cmj：这里的num_gpus我选择了保留介绍，因为在命令行中没有出现这个参数，实际应用中可能会被忽略】
 Here we use only one gpu is enough.*删除` --num_gpus 4`* 
 
 Upon successful execution, the command will generate two star files;*`cd ~/toy/并ls`展示`my_CNG_1.star` `my_CNG_1_sieved.star`指向第一个文件：*This file contain the information of the remaining particles, *指向第二个文件*and this one contains the sieved particles.
@@ -87,14 +84,14 @@ You can use this command to see if two file contain the same particle informatio
 ## EP4 Practical Utility
 
 ### Dataset Preparation
-In this section, we provide a hands-on example of how to utilize CryoSieve for processing the final stack in a real-world experimental dataset. For this tutorial, we'll use the final particle stack from the `EMPIAR-11233` dataset. [I RECOMMEND TO USE EMPIAR-10097 DATASET. IT IS USED IN MY KEYNOTE.]
+In this section, we provide a hands-on example of how to utilize CryoSieve for processing the final stack in a real-world experimental dataset. For this tutorial, we'll use the final particle stack from the `EMPIAR-10097` dataset.
 
 To download the final particle stack, navigate to your desired working directory and execute the following command:
-`wget -nH -m ftp://ftp.ebi.ac.uk/empiar/world_availability/11233/data/Final_Particle_Stack/`
+`wget -nH -m ftp://ftp.ebi.ac.uk/empiar/world_availability/10097/data/Final_Particle_Stack/`
 
 Go to the folder where the data set is stored, this directory contains a star file with all particle information and an mrcs file representing the final stack.
 *cd+ls*
-Additionally, you'll need a mask file. You can generate a mask file using any cryo-EM software, based on the reconstructed volume. If you prefer not to generate a mask file, we've provided one used in our experiments which you can download from our github. Once you have the mask file, move it into the `Final_Particle_Stack` directory.【这一段有必要吗？】
+Additionally, you'll need a mask file. You can generate a mask file using any cryo-EM software, based on the reconstructed volume. If you prefer not to generate a mask file, we've provided one used in our experiments which you can download from our github. Once you have the mask file, move it into the `Final_Particle_Stack` directory.
 
 *仅进行提示，无需操作*
 
@@ -113,7 +110,7 @@ To start our program, follow these steps:
 Firstly, navigate to `XXX/data/Final_Particle_Stack`. I have already in this directory.
 Then, make sure that  `relion_reconstruct` or `relion_reconstruct_mpi` and `relion_postprocess` are accessible since our automatic program currently uses Relion for 3D reconstruction and postprocessing. 
 Once confirmed, run the following command:
-*输入命令`cryosieve --reconstruct_software relion_reconstruct --postprocess_software relion_postprocess --i diver2019_pmTRPM8_calcium_Krios_6Feb18_finalParticleStack_EMPIAR_composite.star --o output/ --mask mask.mrc --angpix 1.059 --num_iters 10 --frequency_start 40 --frequency_end 3 --retention_ratio 0.8 --sym C4`*
+*输入命令`cryosieve --reconstruct_software relion_reconstruct --postprocess_software relion_postprocess --i T40_HA_130K-Equalized_run-data_CryoSPARC_refined.star --o output/ --mask mask.mrc --angpix 1.3099979 --num_iters 10 --frequency_start 40 --frequency_end 3 --retention_ratio 0.8 --sym C3 --num_gpus 1 --balance grep "+ FINAL RESOLUTION:" output/_postprocess*.txt`*
 The parameters "reconstruction_software" and "postprocess_software" specify the reconstruction and post-processing software. 
 "i," "o," "mask," "angpix," and "retention_ratio" are used in the same way as the parameters in the CryoSieve-Core command. They are used to specify the input and output file paths, mask file path, pixel size in Angstrom, and fraction of retained particles in each iteration (default value: 0.8). 
 "frequency_start" and "frequency_end" set the starting and ending threshold frequencies in Angstrom units. The default values are 50A and 3A, respectively. 
@@ -133,7 +130,12 @@ The entire process may take over an hour, depending on your system resources. Mu
 
 ## EP6, re-esimate poses via CryoSPARC
 
-VERY IMPORTANT, PLEASE TRY TO DO IT YOURSELF, BASED ON MY KEYNOTE.
+*敲入`grep "RESOLUTION" *.txt`*
+After several times sieving, we have to find out the iterations that best meet our demand. We address this issue by re-estimating poses via cryoSPARC.
+
+The first step is to pick out some images stacks output by CryoSieve that might be suitable, and import them to cryoSPARC. Once the stacks are imported, we perform ab initio modeling. This step generates an initial 3D model of the macromolecule based solely on the experimental density maps. After the ab initio model is generated, we begin the refinement process, also known as single-particle reconstruction. Instead of re-do GS split, we keep the gold-standard criteria. Finally, we will get the results. The iteration with lesser particles, yet exhibiting better resolution and contrast, will be selected and referred to as the "finest subset".
+
+We begin with importing stacks output by CryoSieve  that might suitable to cryoSPARC.
 
 ## Ending
 
