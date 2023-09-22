@@ -117,23 +117,25 @@ The parameters "reconstruction_software" and "postprocess_software" specify the 
 "sys" represents the molecular symmetry, with a default value of "c1".
 
 ## EP5 Result Analysis
-The entire process may take over an hour, depending on your system resources. Multiple result files will be generated and saved in the `output/` directory. The reconstructed density maps from the nth iteration are saved as `iter{n}_half.mrc` files. The reconstruction log is stored in `reconstruct_half.txt`. Filtered particles are stored in `sieved.star` along with the corresponding log in a `.txt` file. Retained particles are stored in `.star` files. If post-processing is used, additional result files with the prefix `postprocess_iter` followed by the iteration number are generated.
-`_iter{n}_half1.mrc`
-`_iter{n}_half2.mrc`
-`_iter{n}_reconstruct_half1.txt`
-`_iter{n}_reconstruct_half2.txt`
+The entire process may take over an hour, depending on your system resources. Multiple result files will be generated and saved in the `output/` directory. The reconstructed density maps from the nth iteration are saved as `iter{n}_half.mrc` files.  The reconstruction log is stored in `reconstruct_half.txt`.  Since the particals are divided randomly into two group, we have two density maps as well as reconstruction log in each iteration. Filtered particles are stored in `sieved.star` along with the corresponding log in a `.txt` file. Retained particles are stored in `.star` files. If post-processing is used, additional result files with the prefix `postprocess_iter` followed by the iteration number are generated.
+`_iter{n}_half1.mrc` 
+`_iter{n}_half2.mrc` 
+`_iter{n}_reconstruct_half1.txt` 
+`_iter{n}_reconstruct_half2.txt` 
 `_iter{n}_sieved.star`
 `_iter{n}_sieve.txt`
 `_iter{n}.star`
+
+
 
 【上述文件分别是：第n轮重构的密度图1、密度图2、日志1、日志2，筛选掉的颗粒、筛选的日志、保留的颗粒。但是这些文件应该还不全，在使用postprocess的时候还有postprocess产生的文件。】
 
 ## EP6, re-esimate poses via CryoSPARC
 
 *敲入`grep "RESOLUTION" *.txt`*
-After several times sieving, we have to find out the iterations that best meet our demand. We address this issue by re-estimating poses via cryoSPARC.
+After several times sieving, we have to find out the iterations that best meet our demand. it provides great reassurance to validate our result. We address this issue by re-estimating poses via cryoSPARC.
 
-The first step is to pick out some images stacks output by CryoSieve that might be suitable, and import them to cryoSPARC. Once the stacks are imported, we perform ab initio modeling. This step generates an initial 3D model of the macromolecule based solely on the experimental density maps. After the ab initio model is generated, we begin the refinement process, also known as single-particle reconstruction. Instead of re-do GS split, we keep the gold-standard criteria. Finally, we will get the results. The iteration with lesser particles, yet exhibiting better resolution and contrast, will be selected and referred to as the "finest subset".
+The first step is to pick out some images stacks output by CryoSieve that might be suitable, and import them to cryoSPARC. Once the stacks are imported, we perform ab-initio modeling. This step generates an initial 3D model of the macromolecule based solely on the experimental density maps. After the ab initio model is generated, we begin the refinement process, also known as single-particle reconstruction. Instead of re-do GS split, we keep the gold-standard criteria. Finally, we will get the results. The iteration with lesser particles, yet exhibiting better resolution and contrast, will be selected and referred to as the "finest subset".
 
 We begin with importing stacks output by CryoSieve  that might suitable to cryoSPARC.
 
